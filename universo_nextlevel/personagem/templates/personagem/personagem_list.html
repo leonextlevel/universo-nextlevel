@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Lista de Personagens</h1>
+
+<table style="border: 1px solid red;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid red;">Nome</th>
+            <th style="border: 1px solid red;">Idade</th>
+            <th style="border: 1px solid red;">Sexo</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for obj in object_list %}
+        <tr>
+            <td style="border: 1px solid red;">{{ obj.nome }}</td>
+            <td style="border: 1px solid red;">{{ obj.idade }}</td>    
+            <td style="border: 1px solid red;">{{ obj.get_sexo_display }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
