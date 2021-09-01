@@ -1,26 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<h1>Lista de Personagens</h1>
+{% endblock title %}
+
+{% block actions %}
+<a href="{% url 'personagem_form' %}" class="btn btn-success btn-icon-split">
+    <span class="icon text-white-50">
+        <i class="fas fa-plus"></i>
+    </span>
+    <span class="text">Novo Personagem</span>
+</a>
+{% endblock actions %}
 
 {% block content %}
-
-<h1>Lista de Personagens</h1>
-
-<table style="border: 1px solid red;">
-    <thead>
-        <tr>
-            <th style="border: 1px solid red;">Nome</th>
-            <th style="border: 1px solid red;">Idade</th>
-            <th style="border: 1px solid red;">Sexo</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for obj in object_list %}
-        <tr>
-            <td style="border: 1px solid red;">{{ obj.nome }}</td>
-            <td style="border: 1px solid red;">{{ obj.idade }}</td>    
-            <td style="border: 1px solid red;">{{ obj.get_sexo_display }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
+{% for obj in object_list %}
+    <div class="col-xl-3 col-sm-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h4 mb-2 font-weight-bold text-gray-800">{{ obj.nome }}</div>
+                        <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">
+                            Idade: <span class="text-gray-800">{{ obj.idade }}</span>
+                        </div>
+                        <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">
+                            Sexo: <span class="text-gray-800">{{ obj.get_sexo_display }}</span>
+                        </div>
+                        <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">
+                            Profissão: <span class="text-gray-800">{{ obj.profissao }}</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <!-- <i class="fas fa-user fa-2x text-gray-300"></i> -->
+                        <img src="{% static 'images/personagem2.jpg' %}" height="150px" class="rounded center-cropped" alt="Responsive image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
 {% endblock content %}

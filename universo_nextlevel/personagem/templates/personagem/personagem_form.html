@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+<h1>Criar Personagem</h1>
+{% endblock title %}
+
+{% block content %}
+<form method="POST" class="row">
+    {% csrf_token %}
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+        {% render_field form.nome class="form-control" %}
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.idade.id_for_label }}">{{ form.idade.label }}</label>
+        {% render_field form.idade class="form-control" %}
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.sexo.id_for_label }}">{{ form.sexo.label }}</label>
+        {% render_field form.sexo class="form-control" %}
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.tendencia.id_for_label }}">{{ form.tendencia.label }}</label>
+        {% render_field form.tendencia class="form-control" %}
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.profissao.id_for_label }}">{{ form.profissao.label }}</label>
+        {% render_field form.profissao class="form-control" %}
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <label class="h5 text-primary" for="{{ form.caracteristica_marcante.id_for_label }}">{{ form.caracteristica_marcante.label }}</label>
+        {% render_field form.caracteristica_marcante class="form-control" %}
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <label class="h5 text-primary" for="{{ form.descricao_fisica.id_for_label }}">{{ form.descricao_fisica.label }}</label>
+        {% render_field form.descricao_fisica class="form-control" %}
+    </div>
+    <div class="col-md-12">
+        <label class="h5 text-primary" for="{{ form.background.id_for_label }}">{{ form.background.label }}</label>
+        {% render_field form.background class="form-control" %}
+    </div>
+    <button type="submit" class="btn btn-success my-2 mr-4 ml-auto">
+        <i class="fas fa-save"></i>
+        Salvar
+    </button>
+</form>
+{% endblock content %}
