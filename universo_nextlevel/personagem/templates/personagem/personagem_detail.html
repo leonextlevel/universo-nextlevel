@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<h1>Detalhes do Personagem "{{ personagem.nome }}"</h1>
+{% endblock title %}
+
+{% block content %}
+<div class="row col-12 mt-4">
+    <div class="col-sm-12 col-md-3 mb-3">
+        {% if personagem.imagem_perfil %}
+        <img src="{{ personagem.imagem_perfil.url }}" class="img-fluid rounded" alt="Imagem Personagem">
+        {% else %}
+        <img src="{% static 'images/personagem_sem_imagem.jpg' %}" height="150px" class="img-fluid rounded" alt="Imagem Personagem">
+        {% endif %}
+    </div>
+    <div class="col-sm-12 col-md-2">
+        <h3 class="text-primary">Idade</h3>
+        <div class="h5">{{ personagem.idade }}</div>
+        <h3 class="text-primary">Sexo</h3>
+        <div class="h5">{{ personagem.get_sexo_display }}</div>
+        <h3 class="text-primary">Profissão</h3>
+        <div class="h5">{{ personagem.profissao }}</div>
+        <h3 class="text-primary">Tendência</h3>
+        <div class="h5">{{ personagem.get_tendencia_display }}</div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <h3 class="text-primary">Característica Marcante</h3>
+        <div class="h5">{{ personagem.caracteristica_marcante }}</div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <h3 class="text-primary">Descrição Física</h3>
+        <div class="h5">{{ personagem.descricao_fisica }}</div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <h3 class="text-primary">Característica Marcante</h3>
+        <div class="h5">{{ personagem.background }}</div>
+    </div>
+</div>
+{% endblock content %}

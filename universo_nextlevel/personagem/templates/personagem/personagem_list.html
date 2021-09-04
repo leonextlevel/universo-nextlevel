@@ -41,6 +41,22 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer">
+                <div class="row justify-content-between">
+                    <a href="{% url 'personagem_form' pk=obj.pk %}" class="btn btn-primary col-5 mx-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="text">Editar</span>
+                    </a>
+                    <a href="{% url 'personagem_detail' pk=obj.pk %}" class="btn btn-secondary col-5 mx-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+                        <span class="text">Detalhes</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 {% endfor %}
