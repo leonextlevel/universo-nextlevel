@@ -6,12 +6,18 @@
 {% endblock title %}
 
 {% block actions %}
-<a href="{% url 'personagem_form' pk=personagem.pk %}" class="btn btn-primary btn-icon-split">
+<a href="{% url 'personagem_form' pk=personagem.pk %}" class="btn btn-primary btn-icon-split mx-1">
     <span class="icon text-white-50">
         <i class="fas fa-edit"></i>
     </span>
     <span class="text">Editar</span>
 </a>
+<button type="button" class="btn btn-danger btn-icon-split mx-1" data-toggle="modal" data-target="#delete_personagem">
+    <span class="icon text-white-50">
+        <i class="fas fa-trash"></i>
+    </span>
+    <span class="text">Excluir</span>
+</button>
 {% endblock actions %}
 
 {% block content %}
@@ -44,6 +50,28 @@
     <div class="col-sm-12 col-md-7">
         <h3 class="text-primary">Característica Marcante</h3>
         <div class="h5">{{ personagem.background }}</div>
+    </div>
+</div>
+
+<div class="modal fade" id="delete_personagem" tabindex="-1" role="dialog" aria-labelledby="delete_personagem_label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="delete_personagem_label">Excluir Personagem</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Você tem certeza que quer excluir o personagem "{{ personagem.nome }}"?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+          <a href="{% url 'personagem_delete' pk=personagem.pk %}" class="btn btn-success">
+              Sim
+          </a>
+        </div>
+      </div>
     </div>
 </div>
 {% endblock content %}
