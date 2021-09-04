@@ -1,5 +1,10 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, TemplateView
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    TemplateView,
+)
 
 from .models import Personagem
 from .forms import PersonagemForm
@@ -14,6 +19,12 @@ class PersonagemListView(ListView):
 
 
 class PersonagemCreateView(CreateView):
+    model = Personagem
+    form_class = PersonagemForm
+    success_url = reverse_lazy('personagem_list')
+
+
+class PersonagemUpdateView(UpdateView):
     model = Personagem
     form_class = PersonagemForm
     success_url = reverse_lazy('personagem_list')
