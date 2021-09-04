@@ -1,8 +1,12 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, TemplateView
 
 from .models import Personagem
 from .forms import PersonagemForm
+
+
+class HomeView(TemplateView):
+    template_name = 'home.html'
 
 
 class PersonagemListView(ListView):

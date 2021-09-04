@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-<form method="POST" class="row">
+<form method="POST" class="row" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="col-lg-4 col-md-6">
         <label class="h5 text-primary" for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
@@ -27,6 +27,10 @@
     <div class="col-lg-4 col-md-6">
         <label class="h5 text-primary" for="{{ form.profissao.id_for_label }}">{{ form.profissao.label }}</label>
         {% render_field form.profissao class="form-control" %}
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.imagem_perfil.id_for_label }}">{{ form.imagem_perfil.label }}</label>
+        {% render_field form.imagem_perfil class="form-control" %}
     </div>
     <div class="col-lg-6 col-md-12">
         <label class="h5 text-primary" for="{{ form.caracteristica_marcante.id_for_label }}">{{ form.caracteristica_marcante.label }}</label>

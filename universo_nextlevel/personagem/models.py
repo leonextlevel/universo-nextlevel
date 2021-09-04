@@ -30,6 +30,12 @@ class Personagem(models.Model):
         choices=TendenciaChoices.choices,
     )
     descricao_fisica = models.TextField("Descrição Física")
+    imagem_perfil = models.ImageField(
+        "Imagem de Perfil",
+        upload_to="personagem/",
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Personagem"

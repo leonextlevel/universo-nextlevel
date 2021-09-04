@@ -16,4 +16,5 @@ class PersonagemForm(forms.ModelForm):
             'background',
             'tendencia',
             'descricao_fisica',
+            'imagem_perfil',
         ]

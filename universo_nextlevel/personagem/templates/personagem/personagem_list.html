@@ -33,8 +33,11 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <!-- <i class="fas fa-user fa-2x text-gray-300"></i> -->
-                        <img src="{% static 'images/personagem2.jpg' %}" height="150px" class="rounded center-cropped" alt="Responsive image">
+                        {% if obj.imagem_perfil %}
+                        <img src="{{ obj.imagem_perfil.url }}" height="150px" class="rounded center-cropped" alt="Imagem Personagem">
+                        {% else %}
+                        <img src="{% static 'images/personagem_sem_imagem.jpg' %}" height="150px" class="rounded center-cropped" alt="Imagem Personagem">
+                        {% endif %}
                     </div>
                 </div>
             </div>
