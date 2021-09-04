@@ -20,6 +20,7 @@ class HomeView(TemplateView):
 
 class PersonagemListView(ListView):
     model = Personagem
+    paginate_by = 6
 
 
 class PersonagemCreateView(CreateView):
