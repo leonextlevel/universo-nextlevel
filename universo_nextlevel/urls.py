@@ -4,11 +4,9 @@ from django.urls.conf import include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from universo_nextlevel.personagem.views import HomeView
-
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('', include('universo_nextlevel.core.urls')),
     path('admin/', admin.site.urls),
     path('personagem/', include('universo_nextlevel.personagem.urls')),
 ]

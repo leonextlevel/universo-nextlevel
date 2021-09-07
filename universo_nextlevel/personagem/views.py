@@ -1,4 +1,6 @@
 from typing import Any, Dict
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 from django.urls.base import reverse
@@ -6,7 +8,6 @@ from django.views.generic import (
     ListView,
     CreateView,
     UpdateView,
-    TemplateView,
     DetailView,
 )
 
@@ -14,16 +15,12 @@ from .models import Personagem
 from .forms import PersonagemForm
 
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
-
-
-class PersonagemListView(ListView):
+class PersonagemListView(LoginRequiredMixin, ListView):
     model = Personagem
     paginate_by = 6
 
 
-class PersonagemCreateView(CreateView):
+class PersonagemCreateView(LoginRequiredMixin, CreateView):
     model = Personagem
     form_class = PersonagemForm
     success_url = reverse_lazy('personagem_list')
@@ -34,7 +31,7 @@ class PersonagemCreateView(CreateView):
         return context
 
 
-class PersonagemUpdateView(UpdateView):
+class PersonagemUpdateView(LoginRequiredMixin, UpdateView):
     model = Personagem
     form_class = PersonagemForm
     success_url = reverse_lazy('personagem_list')
@@ -45,11 +42,12 @@ class PersonagemUpdateView(UpdateView):
         return context
 
 
-class PersonagemDetailView(DetailView):
+class PersonagemDetailView(LoginRequiredMixin, DetailView):
     model = Personagem
     context_object_name = 'personagem'
 
 
+@login_required
 def personagem_delete_view(request, pk):
     personagem = get_object_or_404(Personagem, pk=pk)
     personagem.delete()
