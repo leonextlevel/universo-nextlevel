@@ -30,7 +30,7 @@ path\to\venv\Scripts\activate.bat
 ```
 No Windows usando PowerShell
 ```bash
-path\to\venv\Scripts\activate.bat
+path\to\venv\Scripts\Activate.ps1
 ```
 
 ### Instalar as dependências
