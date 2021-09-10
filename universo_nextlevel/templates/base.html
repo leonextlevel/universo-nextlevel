@@ -47,9 +47,23 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'personagem_list' %}">
                     <i class="fas fa-users"></i>
-                    <span>Personagens</span></a>
+                    <span>Personagens</span>
+                </a>
             </li>
 
+            <li class="nav-item">
+                {% if request.user.is_authenticated %}
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                {% endif %}
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

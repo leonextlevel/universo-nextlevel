@@ -1,3 +1,5 @@
 Django
 django-widget-tweaks
 Pillow
+python-decouple
+requests

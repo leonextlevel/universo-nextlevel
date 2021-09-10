@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qjwr0gzqkxr4crgwcdwxwn^ihj&=x%is4)d(kh0zush_i!pn_7'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,18 +42,28 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
 
+    'universo_nextlevel.core',
     'universo_nextlevel.personagem',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'universo_nextlevel.core.middlewares.TwitchAuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'universo_nextlevel.core.authbackends.TwitchBackend',
+]
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
 
 ROOT_URLCONF = 'universo_nextlevel.urls'
 
@@ -134,3 +146,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TWITCH_AUTHORIZE_URL = 'https://id.twitch.tv/oauth2/authorize'
+TWITCH_TOKEN_URL = 'https://id.twitch.tv/oauth2/token'
+TWITCH_TOKEN_VALIDATE = 'https://id.twitch.tv/oauth2/validate'
+TWITCH_CLIENT_ID = config('TWITCH_CLIENT_ID')
+TWITCH_CLIENT_SECRET = config('TWITCH_CLIENT_SECRET')
+TWITCH_REDIRECT_URI = config('TWITCH_REDIRECT_URI')
+TWITCH_USERS_URL = 'https://api.twitch.tv/helix/users'
