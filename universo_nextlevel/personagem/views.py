@@ -11,6 +11,7 @@ from django.views.generic import (
     DetailView,
 )
 
+from .mixins import RequestUserMixin
 from .models import Personagem
 from .forms import PersonagemForm
 
@@ -20,7 +21,7 @@ class PersonagemListView(LoginRequiredMixin, ListView):
     paginate_by = 6
 
 
-class PersonagemCreateView(LoginRequiredMixin, CreateView):
+class PersonagemCreateView(LoginRequiredMixin, RequestUserMixin, CreateView):
     model = Personagem
     form_class = PersonagemForm
     success_url = reverse_lazy('personagem_list')
@@ -31,7 +32,7 @@ class PersonagemCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class PersonagemUpdateView(LoginRequiredMixin, UpdateView):
+class PersonagemUpdateView(LoginRequiredMixin, RequestUserMixin, UpdateView):
     model = Personagem
     form_class = PersonagemForm
     success_url = reverse_lazy('personagem_list')

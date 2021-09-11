@@ -1,37 +1,74 @@
 from django.db import models
+from django.conf import settings
+from django.db.models.deletion import PROTECT
+
+from .choices import SexoChoices, TendenciaChoices
+
+
+class Descricao(models.Model):
+    altura = models.PositiveSmallIntegerField("Altura")
+    cor_olho = models.CharField("Cor do olho", max_length=100)
+    cor_cabelo = models.CharField("Cor do cabelo", max_length=100)
+    cor_pele = models.CharField("Cor do pele", max_length=100)
+    peso = models.PositiveSmallIntegerField("Peso")
+    outras_caracteristicas = models.TextField("Outras Características")
+
+
+class Atributo(models.Model):
+    # Atributos Básicos
+    max_hp = models.PositiveSmallIntegerField("HP Máximo")
+    max_mp = models.PositiveSmallIntegerField("MP Máximo")
+
+    # Atributos Principais
+    forca = models.SmallIntegerField("Força")
+    destreza = models.SmallIntegerField("Destreza")
+    precisao = models.SmallIntegerField("Precisão")
+    inteligencia = models.SmallIntegerField("Inteligência")
+    sabedoria = models.SmallIntegerField("Sabedoria")
+    carisma = models.SmallIntegerField("Carisma")
+    resistencia = models.SmallIntegerField("Resistência")
+    foco = models.SmallIntegerField("Foco")
+    esquiva = models.SmallIntegerField("Esquiva")
+
+    # Atributo Épico
+    sorte = models.SmallIntegerField("Sorte")
 
 
 class Personagem(models.Model):
 
-    class SexoChoices(models.TextChoices):
-        MASCULINO = 'M', 'Masculino'
-        FEMININO = 'F', 'Feminino'
+    criador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
 
-    class TendenciaChoices(models.TextChoices):
-        LEAL_BOM = 'LB', 'Leal e Bom'
-        NEUTRO_BOM = 'NB', 'Neutro e Bom'
-        CAOTICO_BOM = 'CB', 'Caótico e Bom'
-        LEAL_NEUTRO = 'LN', 'Leal e Neutro'
-        NEUTRO = 'N', 'Neutro'
-        CAOTICO_NEUTRO = 'CN', 'Caótico e Neutro'
-        LEAL_MAU = 'LM', 'Leal e Mau'
-        NEUTRO_MAU = 'NM', 'Neutro e Mau'
-        CAOTICO_MAU = 'CM', 'Caótico e Mau'
-
-    nome = models.CharField(max_length=100)
-    idade = models.PositiveSmallIntegerField()
-    sexo = models.CharField(max_length=1, choices=SexoChoices.choices)
+    # Básico
+    nome = models.CharField("Nome", max_length=100)
+    idade = models.PositiveSmallIntegerField("Idade")
+    sexo = models.CharField("Sexo", max_length=1, choices=SexoChoices.choices)
     profissao = models.CharField("Profissão", max_length=50)
-    caracteristica_marcante = models.TextField("Característica Marcante")
-    background = models.TextField()
     tendencia = models.CharField(
         "Tendência",
         max_length=2,
         choices=TendenciaChoices.choices,
     )
-    descricao_fisica = models.TextField("Descrição Física")
-    imagem_perfil = models.ImageField(
-        "Imagem de Perfil",
+
+    descricao = models.OneToOneField(
+        Descricao,
+        on_delete=PROTECT,
+        null=True,
+        blank=True
+    )
+
+    atributo = models.OneToOneField(
+        Atributo,
+        on_delete=PROTECT,
+        null=True,
+        blank=True,
+    )
+
+    # Aprofudamento
+    background = models.TextField("Background")
+    caracteristica_marcante = models.TextField("Característica Marcante")
+
+    imagem = models.ImageField(
+        "Imagem",
         upload_to="personagem/",
         null=True,
         blank=True,
@@ -43,4 +80,4 @@ class Personagem(models.Model):
         ordering = ["nome"]
 
     def __str__(self) -> str:
-        return self.nome
+        return f'{self.nome} ({self.criador.username})'

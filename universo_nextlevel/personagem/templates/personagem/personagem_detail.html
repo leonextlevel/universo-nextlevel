@@ -22,34 +22,98 @@
 
 {% block content %}
 <div class="row col-12 mt-4">
-    <div class="col-sm-12 col-md-3 mb-3">
-        {% if personagem.imagem_perfil %}
-        <img src="{{ personagem.imagem_perfil.url }}" class="img-fluid rounded" alt="Imagem Personagem">
+    <div class="col-sm-12 col-lg-4 mb-4">
+      <div class="col-12 mb-3">
+        {% if personagem.imagem %}
+        <img src="{{ personagem.imagem.url }}" class="img-fluid rounded" alt="Imagem Personagem">
         {% else %}
         <img src="{% static 'images/personagem_sem_imagem.jpg' %}" height="150px" class="img-fluid rounded" alt="Imagem Personagem">
         {% endif %}
+      </div>
+      {% if personagem.atributo %}
+      <h3 class="text-primary">Atributos</h3>
+      <div class="row">
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">HP</h4>
+          <div class="h4">{{ personagem.atributo.max_hp|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">MP</h4>
+          <div class="h4">{{ personagem.atributo.max_mp|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Força</h4>
+          <div class="h4">{{ personagem.atributo.forca|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Destreza</h4>
+          <div class="h4">{{ personagem.atributo.destreza|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Precisão</h4>
+          <div class="h4">{{ personagem.atributo.precisao|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Inteligência</h4>
+          <div class="h4">{{ personagem.atributo.inteligencia|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Sabedoria</h4>
+          <div class="h4">{{ personagem.atributo.sabedoria|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Carisma</h4>
+          <div class="h4">{{ personagem.atributo.carisma|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Resistência</h4>
+          <div class="h4">{{ personagem.atributo.resistencia|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Foco</h4>
+          <div class="h4">{{ personagem.atributo.foco|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Esquiva</h4>
+          <div class="h4">{{ personagem.atributo.esquiva|default_if_none:"---" }}</div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <h4 class="text-primary">Sorte</h4>
+          <div class="h4">{{ personagem.atributo.sorte|default_if_none:"---" }}</div>
+        </div>
+      </div>
+      {% endif %}
     </div>
-    <div class="col-sm-12 col-md-2">
-        <h3 class="text-primary">Idade</h3>
-        <div class="h5">{{ personagem.idade }}</div>
-        <h3 class="text-primary">Sexo</h3>
-        <div class="h5">{{ personagem.get_sexo_display }}</div>
-        <h3 class="text-primary">Profissão</h3>
-        <div class="h5">{{ personagem.profissao }}</div>
-        <h3 class="text-primary">Tendência</h3>
-        <div class="h5">{{ personagem.get_tendencia_display }}</div>
+    <div class="col-sm-12 col-lg-3 mb-4">
+        <h3 class="text-primary">Descrição</h3>
+        <h4 class="text-primary">Idade</h4>
+        <div class="h4">{{ personagem.idade }} anos</div>
+        <h4 class="text-primary">Sexo</h4>
+        <div class="h4">{{ personagem.get_sexo_display }}</div>
+        <h4 class="text-primary">Profissão</h4>
+        <div class="h4">{{ personagem.profissao }}</div>
+        <h4 class="text-primary">Tendência</h4>
+        <div class="h4">{{ personagem.get_tendencia_display }}</div>
+        {% if personagem.descricao %}
+        <h4 class="text-primary">Altura</h4>
+        <div class="h4">{{ personagem.descricao.altura|default_if_none:"---" }} cm</div>
+        <h4 class="text-primary">Cor do Olho</h4>
+        <div class="h4">{{ personagem.descricao.cor_olho|default_if_none:"---" }}</div>
+        <h4 class="text-primary">Cor do Cabelo</h4>
+        <div class="h4">{{ personagem.descricao.cor_cabelo|default_if_none:"---" }}</div>
+        <h4 class="text-primary">Cor da Pele</h4>
+        <div class="h4">{{ personagem.descricao.cor_pele|default_if_none:"---" }}</div>
+        <h4 class="text-primary">Peso</h4>
+        <div class="h4">{{ personagem.descricao.peso|default_if_none:"---" }} Kg</div>
+        <h4 class="text-primary">Outras Características</h4>
+        <div class="h4">{{ personagem.descricao.outras_caracteristicas|default_if_none:"---" }}</div>
+        {% endif %}
     </div>
-    <div class="col-sm-12 col-md-7">
-        <h3 class="text-primary">Característica Marcante</h3>
-        <div class="h5">{{ personagem.caracteristica_marcante }}</div>
-    </div>
-    <div class="col-sm-12 col-md-7">
-        <h3 class="text-primary">Descrição Física</h3>
-        <div class="h5">{{ personagem.descricao_fisica }}</div>
-    </div>
-    <div class="col-sm-12 col-md-7">
+    <div class="col-sm-12 col-lg-4">
         <h3 class="text-primary">Background</h3>
         <div class="h5">{{ personagem.background }}</div>
+        <h3 class="text-primary">Característica Marcante</h3>
+        <div class="h5">{{ personagem.caracteristica_marcante }}</div>
     </div>
 </div>
 
