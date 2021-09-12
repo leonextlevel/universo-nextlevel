@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import dj_database_url
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 
 from pathlib import Path
 from typing import cast
@@ -155,6 +158,14 @@ if not DEBUG:
         'API_KEY': config('API_KEY'),
         'API_SECRET': config('API_SECRET'),
     }
+
+    # Sentry Config
+    SENTRY_DSN = config('SENTRY_DSN')
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+    )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
