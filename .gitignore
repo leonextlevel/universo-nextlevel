@@ -142,3 +142,4 @@ cython_debug/
 
 # Media Django dev
 universo_nextlevel/media/
+universo_nextlevel/staticfiles/
