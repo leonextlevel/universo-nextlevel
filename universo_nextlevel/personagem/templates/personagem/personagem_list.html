@@ -33,8 +33,8 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        {% if obj.imagem_perfil %}
-                        <img src="{{ obj.imagem_perfil.url }}" height="150px" class="rounded center-cropped" alt="Imagem Personagem">
+                        {% if obj.imagem %}
+                        <img src="{{ obj.imagem.url }}" height="150px" class="rounded center-cropped" alt="Imagem Personagem">
                         {% else %}
                         <img src="{% static 'images/personagem_sem_imagem.jpg' %}" height="150px" class="rounded center-cropped" alt="Imagem Personagem">
                         {% endif %}

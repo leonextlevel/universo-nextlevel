@@ -11,38 +11,202 @@
     <div class="col-lg-4 col-md-6">
         <label class="h5 text-primary" for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
         {% render_field form.nome class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.nome.errors }}
+        </div>
     </div>
     <div class="col-lg-4 col-md-6">
         <label class="h5 text-primary" for="{{ form.idade.id_for_label }}">{{ form.idade.label }}</label>
         {% render_field form.idade class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.idade.errors }}
+        </div>
     </div>
     <div class="col-lg-4 col-md-6">
         <label class="h5 text-primary" for="{{ form.sexo.id_for_label }}">{{ form.sexo.label }}</label>
         {% render_field form.sexo class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.sexo.errors }}
+        </div>
     </div>
     <div class="col-lg-4 col-md-6">
         <label class="h5 text-primary" for="{{ form.tendencia.id_for_label }}">{{ form.tendencia.label }}</label>
         {% render_field form.tendencia class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.tendencia.errors }}
+        </div>
     </div>
     <div class="col-lg-4 col-md-6">
         <label class="h5 text-primary" for="{{ form.profissao.id_for_label }}">{{ form.profissao.label }}</label>
         {% render_field form.profissao class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.profissao.errors }}
+        </div>
     </div>
     <div class="col-lg-4 col-md-6">
-        <label class="h5 text-primary" for="{{ form.imagem_perfil.id_for_label }}">{{ form.imagem_perfil.label }}</label>
-        {% render_field form.imagem_perfil class="form-control" %}
+        <label class="h5 text-primary" for="{{ form.imagem.id_for_label }}">{{ form.imagem.label }}</label>
+        {% render_field form.imagem class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.imagem.errors }}
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 my-4">
+        <h5 class="text-primary">Descrição</h5>
+        <div class="col-sm-12 col-md-6">
+            <label class="h6 text-primary" for="{{ form.altura.id_for_label }}">{{ form.altura.label }}</label>
+            {% render_field form.altura class="form-control" placeholder="Centímetros" %}
+            <div class="invalid-feedback">
+                {{ form.altura.errors }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <label class="h6 text-primary" for="{{ form.cor_olho.id_for_label }}">{{ form.cor_olho.label }}</label>
+            {% render_field form.cor_olho class="form-control" %}
+            <div class="invalid-feedback">
+                {{ form.cor_olho.errors }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <label class="h6 text-primary" for="{{ form.cor_cabelo.id_for_label }}">{{ form.cor_cabelo.label }}</label>
+            {% render_field form.cor_cabelo class="form-control" %}
+            <div class="invalid-feedback">
+                {{ form.cor_cabelo.errors }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <label class="h6 text-primary" for="{{ form.cor_pele.id_for_label }}">{{ form.cor_pele.label }}</label>
+            {% render_field form.cor_pele class="form-control" %}
+            <div class="invalid-feedback">
+                {{ form.cor_pele.errors }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <label class="h6 text-primary" for="{{ form.peso.id_for_label }}">{{ form.peso.label }}</label>
+            {% render_field form.peso class="form-control" placeholder="Kg" %}
+            <div class="invalid-feedback">
+                {{ form.peso.errors }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <label class="h6 text-primary" for="{{ form.outras_caracteristicas.id_for_label }}">{{ form.outras_caracteristicas.label }}</label>
+            {% render_field form.outras_caracteristicas class="form-control" rows="2" %}
+            <div class="invalid-feedback">
+                {{ form.outras_caracteristicas.errors }}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 my-4 align-self-start">
+        <h5 class="text-primary">Atributos</h5>
+        <div class="row col-8">
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.max_hp.id_for_label }}">{{ form.max_hp.label }}</label>
+                {% render_field form.max_hp class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.max_hp.errors }}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.max_mp.id_for_label }}">{{ form.max_mp.label }}</label>
+                {% render_field form.max_mp class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.max_mp.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row col-8">
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.forca.id_for_label }}">{{ form.forca.label }}</label>
+                {% render_field form.forca class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.forca.errors }}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.destreza.id_for_label }}">{{ form.destreza.label }}</label>
+                {% render_field form.destreza class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.destreza.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row col-8">
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.precisao.id_for_label }}">{{ form.precisao.label }}</label>
+                {% render_field form.precisao class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.precisao.errors }}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.inteligencia.id_for_label }}">{{ form.inteligencia.label }}</label>
+                {% render_field form.inteligencia class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.inteligencia.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row col-8">
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.sabedoria.id_for_label }}">{{ form.sabedoria.label }}</label>
+                {% render_field form.sabedoria class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.sabedoria.errors }}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.carisma.id_for_label }}">{{ form.carisma.label }}</label>
+                {% render_field form.carisma class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.carisma.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row col-8">
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.resistencia.id_for_label }}">{{ form.resistencia.label }}</label>
+                {% render_field form.resistencia class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.resistencia.errors }}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.foco.id_for_label }}">{{ form.foco.label }}</label>
+                {% render_field form.foco class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.foco.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="row col-8">
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.esquiva.id_for_label }}">{{ form.esquiva.label }}</label>
+                {% render_field form.esquiva class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.esquiva.errors }}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label class="h6 text-primary" for="{{ form.sorte.id_for_label }}">{{ form.sorte.label }}</label>
+                {% render_field form.sorte class="form-control" %}
+                <div class="invalid-feedback">
+                    {{ form.sorte.errors }}
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-lg-6 col-md-12">
         <label class="h5 text-primary" for="{{ form.caracteristica_marcante.id_for_label }}">{{ form.caracteristica_marcante.label }}</label>
         {% render_field form.caracteristica_marcante class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.caracteristica_marcante.errors }}
+        </div>
     </div>
     <div class="col-lg-6 col-md-12">
-        <label class="h5 text-primary" for="{{ form.descricao_fisica.id_for_label }}">{{ form.descricao_fisica.label }}</label>
-        {% render_field form.descricao_fisica class="form-control" %}
-    </div>
-    <div class="col-md-12">
         <label class="h5 text-primary" for="{{ form.background.id_for_label }}">{{ form.background.label }}</label>
         {% render_field form.background class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.background.errors }}
+        </div>
     </div>
     <button type="submit" class="btn btn-success my-2 mr-4 ml-auto">
         <i class="fas fa-save"></i>
