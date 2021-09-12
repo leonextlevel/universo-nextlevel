@@ -6,3 +6,4 @@ requests
 django-cloudinary-storage
 psycopg2-binary
 dj-database-url
+gunicorn
