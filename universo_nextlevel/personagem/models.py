@@ -1,6 +1,7 @@
 from django.db import models
-from django.conf import settings
 from django.db.models.deletion import PROTECT
+
+from universo_nextlevel.core.models import Cenario
 
 from .choices import SexoChoices, TendenciaChoices
 
@@ -36,7 +37,7 @@ class Atributo(models.Model):
 
 class Personagem(models.Model):
 
-    criador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    cenario = models.ForeignKey(Cenario, on_delete=models.CASCADE, verbose_name="Cenário")
 
     # Básico
     nome = models.CharField("Nome", max_length=100)

@@ -42,9 +42,26 @@ class PersonagemForm(forms.ModelForm):
     esquiva = forms.IntegerField(min_value=0, max_value=15, required=False)
     sorte = forms.IntegerField(min_value=0, max_value=15, required=False)
 
+    class Meta:
+        model = Personagem
+        fields = [
+            'nome',
+            'idade',
+            'sexo',
+            'profissao',
+            'tendencia',
+            'descricao',
+            'atributo',
+            'background',
+            'caracteristica_marcante',
+            'imagem',
+            'cenario',
+        ]
+
     def __init__(self, *args, **kwargs):
         self.request_user = kwargs.pop('request_user', None)
         super().__init__(*args, **kwargs)
+        self.fields['cenario'].queryset = self.fields['cenario'].queryset.filter(criador=self.request_user)
         if self.instance and self.instance.descricao:
             self.fields['altura'].initial = self.instance.descricao.altura
             self.fields['cor_olho'].initial = self.instance.descricao.cor_olho
@@ -105,7 +122,6 @@ class PersonagemForm(forms.ModelForm):
 
     def save(self, commit: bool = True):
         if self.instance and not self.instance.pk:
-            self.instance.criador = self.request_user
             if commit and all(self.descricao_dict.values()):
                 with transaction.atomic():
                     self.instance.descricao = Descricao.objects.create(**self.descricao_dict)
@@ -127,18 +143,3 @@ class PersonagemForm(forms.ModelForm):
                 elif all(self.descricao_dict.values()):
                     self.instance.atributo = Atributo.objects.create(**self.atributo_dict)
         return super().save(commit=commit)
-
-    class Meta:
-        model = Personagem
-        fields = [
-            'nome',
-            'idade',
-            'sexo',
-            'profissao',
-            'tendencia',
-            'descricao',
-            'atributo',
-            'background',
-            'caracteristica_marcante',
-            'imagem',
-        ]

@@ -1,9 +1,3 @@
-import requests
-
-from django.conf import settings
-from django.contrib import auth
-from django.shortcuts import redirect
-from django.urls.base import reverse
 from django.views.generic import (
     TemplateView,
 )
