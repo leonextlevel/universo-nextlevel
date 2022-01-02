@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<h1>Detalhes do Cenário "{{ cenario.nome }}"</h1>
+{% endblock title %}
+
+{% block actions %}
+<a href="{% url 'cenario_form' pk=cenario.pk %}" class="btn btn-primary btn-icon-split mx-1">
+    <span class="icon text-white-50">
+        <i class="fas fa-edit"></i>
+    </span>
+    <span class="text">Editar</span>
+</a>
+<button type="button" class="btn btn-danger btn-icon-split mx-1" data-toggle="modal" data-target="#delete_personagem">
+    <span class="icon text-white-50">
+        <i class="fas fa-trash"></i>
+    </span>
+    <span class="text">Excluir</span>
+</button>
+{% endblock actions %}
+
+{% block content %}
+<div class="row col-12 mt-4">
+    <div class="col-sm-12 col-lg-4 mb-4">
+      <div class="col-12 mb-3">
+        {% if cenario.imagem %}
+        <img src="{{ cenario.imagem.url }}" class="img-fluid rounded" alt="Imagem Cenário">
+        {% else %}
+        <img src="{% static 'images/cenario_sem_imagem.png' %}" height="150px" class="img-fluid rounded" alt="Imagem Cenário">
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-3 mb-4">
+        <h4 class="text-primary">Nome</h4>
+        <div class="h4">{{ cenario.nome }}</div>
+        <h4 class="text-primary">Criador</h4>
+        <div class="h4">{{ cenario.criador.username }}</div>
+        <h4 class="text-primary">Data de Criação</h4>
+        <div class="h4">{{ cenario.data_criacao }}</div>
+    </div>
+</div>
+
+<div class="modal fade" id="delete_personagem" tabindex="-1" role="dialog" aria-labelledby="delete_personagem_label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="delete_personagem_label">Excluir Personagem</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Você tem certeza que quer excluir o cenário "{{ cenario.nome }}"?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+          <a href="{% url 'cenario_delete' pk=cenario.pk %}" class="btn btn-success">
+              Sim
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}
