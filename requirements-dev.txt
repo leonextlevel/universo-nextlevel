@@ -33,10 +33,6 @@ cloudinary==1.26.0 \
     # via
     #   -r requirements.txt
     #   django-cloudinary-storage
-colorama==0.4.4 \
-    --hash=sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b \
-    --hash=sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2
-    # via click
 dj-database-url==0.5.0 \
     --hash=sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163 \
     --hash=sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9
@@ -48,6 +44,10 @@ django==3.2.6 \
 django-cloudinary-storage==0.3.0 \
     --hash=sha256:95c855c7334141b2a485ea7eb5716de87bb6ce0d848e205debb3a3ab7bbbd49a \
     --hash=sha256:debd403a5f225c9d35c4af508ff4abc7fdc262129464134b60b2feeb2c44d3e1
+    # via -r requirements.txt
+django-twitch-auth==0.1.0 \
+    --hash=sha256:ba38b2cc2da016907ad7e13c81d8a47511c5ad2d20f8751a0c0651b252208bf2 \
+    --hash=sha256:f8811f9f40e6adc0af44a855d0c7f11f5003e922ee15085b21f6a11bfc5a85f7
     # via -r requirements.txt
 django-widget-tweaks==1.4.8 \
     --hash=sha256:9f91ca4217199b7671971d3c1f323a2bec71a0c27dec6260b3c006fa541bc489 \
