@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<h1>Lista de Cenários</h1>
+{% endblock title %}
+
+{% block actions %}
+<a href="{% url 'cenario_form' %}" class="btn btn-success btn-icon-split">
+    <span class="icon text-white-50">
+        <i class="fas fa-plus"></i>
+    </span>
+    <span class="text">Novo Cenário</span>
+</a>
+{% endblock actions %}
+
+{% block content %}
+{% for obj in object_list %}
+    <div class="col-xl-4 col-lg-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h4 mb-2 font-weight-bold text-gray-800">{{ obj.nome }}</div>
+                        <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">
+                            Criador: <span class="text-gray-800">{{ obj.criador.username }}</span>
+                        </div>
+                        <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">
+                            Data de Criação: <span class="text-gray-800">{{ obj.data_criacao }}</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        {% if obj.imagem %}
+                        <img src="{{ obj.imagem.url }}" height="150px" class="rounded center-cropped" alt="Imagem Cenário">
+                        {% else %}
+                        <img src="{% static 'images/cenario_sem_imagem.png' %}" height="150px" class="rounded center-cropped" alt="Imagem Cenário">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row justify-content-between">
+                    <a href="{% url 'cenario_form' pk=obj.pk %}" class="btn btn-primary col-5 mx-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="text">Editar</span>
+                    </a>
+                    <a href="{% url 'cenario_detail' pk=obj.pk %}" class="btn btn-secondary col-5 mx-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+                        <span class="text">Detalhes</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row col-12 justify-content-center">
+        {% include 'pagination.html' %}
+    </div>
+{% endblock content %}

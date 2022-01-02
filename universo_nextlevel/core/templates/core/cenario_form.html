@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+<h1>{{ title }}</h1>
+{% endblock title %}
+
+{% block content %}
+<form method="POST" class="row col-12" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+        {% render_field form.nome class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.nome.errors }}
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ form.imagem.id_for_label }}">{{ form.imagem.label }}</label>
+        {% render_field form.imagem class="form-control" %}
+        <div class="invalid-feedback">
+            {{ form.imagem.errors }}
+        </div>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-success my-2 mr-4 ml-auto">
+            <i class="fas fa-save"></i>
+            Salvar
+        </button>
+    </div>
+</form>
+{% endblock content %}

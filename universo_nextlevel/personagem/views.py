@@ -11,7 +11,7 @@ from django.views.generic import (
     DetailView,
 )
 
-from .mixins import RequestUserMixin
+from universo_nextlevel.mixins import RequestUserMixin
 from .models import Personagem
 from .forms import PersonagemForm
 
