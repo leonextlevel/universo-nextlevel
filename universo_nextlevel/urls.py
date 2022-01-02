@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('universo_nextlevel.core.urls')),
+    path('django_twitch_auth/', include('django_twitch_auth.urls')),
     path('admin/', admin.site.urls),
     path('personagem/', include('universo_nextlevel.personagem.urls')),
 ]

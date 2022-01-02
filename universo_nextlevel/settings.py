@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'cloudinary',
 
     'widget_tweaks',
+    'django_twitch_auth',
 
     'universo_nextlevel.core',
     'universo_nextlevel.personagem',
@@ -55,7 +56,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'universo_nextlevel.core.middlewares.TwitchAuthenticationMiddleware',
+    'django_twitch_auth.middlewares.TwitchAuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -64,7 +65,7 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'universo_nextlevel.core.authbackends.TwitchBackend',
+    'django_twitch_auth.authbackends.TwitchBackend',
 ]
 
 LOGIN_URL = '/login/'
@@ -172,10 +173,6 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TWITCH_AUTHORIZE_URL = 'https://id.twitch.tv/oauth2/authorize'
-TWITCH_TOKEN_URL = 'https://id.twitch.tv/oauth2/token'
-TWITCH_TOKEN_VALIDATE = 'https://id.twitch.tv/oauth2/validate'
 TWITCH_CLIENT_ID = config('TWITCH_CLIENT_ID')
 TWITCH_CLIENT_SECRET = config('TWITCH_CLIENT_SECRET')
 TWITCH_REDIRECT_URI = config('TWITCH_REDIRECT_URI')
-TWITCH_USERS_URL = 'https://api.twitch.tv/helix/users'
