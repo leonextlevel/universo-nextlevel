@@ -9,3 +9,4 @@ dj-database-url
 gunicorn
 sentry-sdk
 django_twitch_auth
+django-filter

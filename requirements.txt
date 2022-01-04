@@ -29,10 +29,16 @@ dj-database-url==0.5.0 \
 django==3.2.6 \
     --hash=sha256:7f92413529aa0e291f3be78ab19be31aefb1e1c9a52cd59e130f505f27a51f13 \
     --hash=sha256:f27f8544c9d4c383bbe007c57e3235918e258364577373d4920e9162837be022
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   django-filter
 django-cloudinary-storage==0.3.0 \
     --hash=sha256:95c855c7334141b2a485ea7eb5716de87bb6ce0d848e205debb3a3ab7bbbd49a \
     --hash=sha256:debd403a5f225c9d35c4af508ff4abc7fdc262129464134b60b2feeb2c44d3e1
+    # via -r requirements.in
+django-filter==21.1 \
+    --hash=sha256:632a251fa8f1aadb4b8cceff932bb52fe2f826dd7dfe7f3eac40e5c463d6836e \
+    --hash=sha256:f4a6737a30104c98d2e2a5fb93043f36dd7978e0c7ddc92f5998e85433ea5063
     # via -r requirements.in
 django-twitch-auth==0.1.0 \
     --hash=sha256:ba38b2cc2da016907ad7e13c81d8a47511c5ad2d20f8751a0c0651b252208bf2 \

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}
 <h1>Lista de Cenários</h1>
@@ -15,7 +16,19 @@
 {% endblock actions %}
 
 {% block content %}
-{% for obj in object_list %}
+<form method="GET" class="row col-12 align-items-end offset-xs-4 my-4">
+    <div class="col-lg-4 col-md-6">
+        <label class="h5 text-primary" for="{{ filter.form.nome__icontains.id_for_label }}">Nome</label>
+        {% render_field filter.form.nome__icontains class="form-control" %}
+    </div>
+    <div class="ml-3 mt-1">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+            Filtrar
+        </button>
+    </div>
+</form>
+{% for obj in filter.qs %}
     <div class="col-xl-4 col-lg-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
