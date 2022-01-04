@@ -4,18 +4,19 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import (
     TemplateView,
-    ListView,
     CreateView,
     UpdateView,
     DetailView,
 )
 
+from django_filters.views import FilterView
 from django_twitch_auth.views import TwitchLoginMixin
 
 from universo_nextlevel.mixins import RequestUserMixin
 
 from .forms import CenarioForm
 from .models import Cenario
+from .filtersets import CenarioFilter
 
 
 class HomeView(TemplateView):
@@ -26,9 +27,11 @@ class LoginView(TwitchLoginMixin, TemplateView):
     template_name = 'core/login.html'
 
 
-class CenarioListView(LoginRequiredMixin, ListView):
+class CenarioListView(LoginRequiredMixin, FilterView):
     model = Cenario
     paginate_by = 6
+    template_name = 'core/cenario_list.html'
+    filterset_class = CenarioFilter
 
 
 class CenarioCreateView(LoginRequiredMixin, RequestUserMixin, CreateView):
