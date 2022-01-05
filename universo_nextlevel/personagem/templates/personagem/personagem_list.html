@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}
 <h1>Lista de Personagens</h1>
@@ -15,7 +16,55 @@
 {% endblock actions %}
 
 {% block content %}
-{% for obj in object_list %}
+<form method="GET" class="row col-12 offset-xs-4 my-4">
+    <div id="accordion" class="col-12">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
+                        Filtros...
+                    </button>
+                </h5>
+            </div>
+      
+            <div id="collapseFilter" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body row align-items-end">
+                    <div class="col-md-6">
+                        <label class="h5 text-primary" for="{{ filter.form.nome__icontains.id_for_label }}">Nome</label>
+                        {% render_field filter.form.nome__icontains class="form-control" %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="h5 text-primary" for="{{ filter.form.sexo.id_for_label }}">Sexo</label>
+                        {% render_field filter.form.sexo class="form-control" %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="h5 text-primary" for="{{ filter.form.profissao__icontains.id_for_label }}">Profissão</label>
+                        {% render_field filter.form.profissao__icontains class="form-control" %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="h5 text-primary" for="{{ filter.form.tendencia.id_for_label }}">Tendência</label>
+                        {% render_field filter.form.tendencia class="form-control" %}
+                    </div>
+                    <div class="col-6">
+                        <label class="h5 text-primary" for="{{ filter.form.idade__lte.id_for_label }}">Idade menor ou igual</label>
+                        {% render_field filter.form.idade__lte class="form-control" %}
+                    </div>
+                    <div class="col-6">
+                        <label class="h5 text-primary" for="{{ filter.form.idade__gte.id_for_label }}">Idade maior ou igual</label>
+                        {% render_field filter.form.idade__gte class="form-control" %}
+                    </div>
+                    <div class="mt-3 ml-auto mr-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Filtrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% for obj in filter.qs %}
     <div class="col-xl-4 col-lg-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
