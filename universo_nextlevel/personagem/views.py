@@ -5,20 +5,23 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 from django.urls.base import reverse
 from django.views.generic import (
-    ListView,
     CreateView,
     UpdateView,
     DetailView,
 )
+from django_filters.views import FilterView
 
 from universo_nextlevel.mixins import RequestUserMixin
 from .models import Personagem
 from .forms import PersonagemForm
+from .filtersets import PersonagemFilter
 
 
-class PersonagemListView(LoginRequiredMixin, ListView):
+class PersonagemListView(LoginRequiredMixin, FilterView):
     model = Personagem
     paginate_by = 6
+    template_name = 'personagem/personagem_list.html'
+    filterset_class = PersonagemFilter
 
 
 class PersonagemCreateView(LoginRequiredMixin, RequestUserMixin, CreateView):
