@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
 
+    'rules.apps.AutodiscoverRulesConfig',
     'widget_tweaks',
     'django_twitch_auth',
 
@@ -65,6 +66,8 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
     'django_twitch_auth.authbackends.TwitchBackend',
 ]
 

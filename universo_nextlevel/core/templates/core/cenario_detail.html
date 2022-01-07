@@ -1,23 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load rules %}
 
 {% block title %}
 <h1>Detalhes do Cenário "{{ cenario.nome }}"</h1>
 {% endblock title %}
 
 {% block actions %}
+
+{% has_perm 'core.can_edit_cenario_instance' user cenario as can_edit_instance %}
+{% if can_edit_instance %}
 <a href="{% url 'cenario_form' pk=cenario.pk %}" class="btn btn-primary btn-icon-split mx-1">
     <span class="icon text-white-50">
         <i class="fas fa-edit"></i>
     </span>
     <span class="text">Editar</span>
 </a>
+{% endif %}
+
+{% has_perm 'core.can_delete_cenario_instance' user cenario as can_delete_instance %}
+{% if can_delete_instance %}
 <button type="button" class="btn btn-danger btn-icon-split mx-1" data-toggle="modal" data-target="#delete_personagem">
     <span class="icon text-white-50">
         <i class="fas fa-trash"></i>
     </span>
     <span class="text">Excluir</span>
 </button>
+{% endif %}
+
 {% endblock actions %}
 
 {% block content %}
