@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load rules %}
 
 {% block title %}
 <h1>Lista de Personagens</h1>
@@ -92,12 +93,15 @@
             </div>
             <div class="card-footer">
                 <div class="row justify-content-between">
+                    {% has_perm 'personagem.can_edit_personagem_instance' user obj as can_edit_instance %}
+                    {% if can_edit_instance %}
                     <a href="{% url 'personagem_form' pk=obj.pk %}" class="btn btn-primary col-5 mx-1">
                         <span class="icon text-white-50">
                             <i class="fas fa-edit"></i>
                         </span>
                         <span class="text">Editar</span>
                     </a>
+                    {% endif %}
                     <a href="{% url 'personagem_detail' pk=obj.pk %}" class="btn btn-secondary col-5 mx-1">
                         <span class="icon text-white-50">
                             <i class="fas fa-info-circle"></i>

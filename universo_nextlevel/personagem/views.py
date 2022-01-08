@@ -1,6 +1,7 @@
 from typing import Any, Dict
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http.response import Http404
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 from django.urls.base import reverse
@@ -10,6 +11,7 @@ from django.views.generic import (
     DetailView,
 )
 from django_filters.views import FilterView
+from rules.contrib.views import PermissionRequiredMixin
 
 from universo_nextlevel.mixins import RequestUserMixin
 from .models import Personagem
@@ -35,10 +37,11 @@ class PersonagemCreateView(LoginRequiredMixin, RequestUserMixin, CreateView):
         return context
 
 
-class PersonagemUpdateView(LoginRequiredMixin, RequestUserMixin, UpdateView):
+class PersonagemUpdateView(LoginRequiredMixin, PermissionRequiredMixin, RequestUserMixin, UpdateView):
     model = Personagem
     form_class = PersonagemForm
     success_url = reverse_lazy('personagem_list')
+    permission_required = 'personagem.can_edit_personagem_instance'
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -54,5 +57,7 @@ class PersonagemDetailView(LoginRequiredMixin, DetailView):
 @login_required
 def personagem_delete_view(request, pk):
     personagem = get_object_or_404(Personagem, pk=pk)
+    if not request.user.has_perm('personagem.can_delete_personagem_instance', personagem):
+        raise Http404
     personagem.delete()
     return redirect(reverse('personagem_list'))

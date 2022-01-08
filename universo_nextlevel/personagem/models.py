@@ -81,4 +81,4 @@ class Personagem(models.Model):
         ordering = ["nome"]
 
     def __str__(self) -> str:
-        return f'{self.nome} ({self.criador.username})'
+        return f'{self.nome} ({self.cenario.criador.username})'
