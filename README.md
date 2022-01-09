@@ -8,6 +8,9 @@ Desenvolvido em Live na Twitch
 
 https://twitch.tv/leonextlevel
 
+# Site de testes hospedado do Heroku
+
+https://universonextlevel.herokuapp.com
 
 # Executando o projeto
 
