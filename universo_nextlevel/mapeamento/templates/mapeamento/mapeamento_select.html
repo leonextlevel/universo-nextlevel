@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h1>Selecione um tipo de mapeamento</h1>
+{% endblock title %}
+    
+{% block content %}
+<div class="col-xl-4 col-md-12 mb-4">
+    <a href="{% url 'nacao_list' %}" class="card-link">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="align-items-center">
+                    <div class="col-12">
+                        <div class="h4 mb-2 font-weight-bold text-gray-800">Nações</div>
+                        <p class="text-dark">
+                            Nações são a maior força política do seu mundo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="col-xl-4 col-md-12 mb-4">
+    <a href="/" class="card-link">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="align-items-center">
+                    <div class="col-12">
+                        <div class="h4 mb-2 font-weight-bold text-gray-800">Estados</div>
+                        <p class="text-dark">
+                            Estados são as sub-divisões de suas nações.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="col-xl-4 col-md-12 mb-4">
+    <a href="/" class="card-link">
+        <div class="card border-left-danger shadow py-2">
+            <div class="card-body">
+                <div class="align-items-center">
+                    <div class="col-12">
+                        <div class="h4 mb-2 font-weight-bold text-gray-800">Distritos</div>
+                        <p class="text-dark">
+                            Distritos são as sub-divisões dos seus Estados e podem ter 3 tipos
+                            de acordo com seu tamanho: Metrópole, Cidade e Vila.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+{% endblock content %}

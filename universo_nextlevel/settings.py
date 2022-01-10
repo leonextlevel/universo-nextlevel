@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     'universo_nextlevel.core',
     'universo_nextlevel.personagem',
+    'universo_nextlevel.mapeamento',
 ]
 
 MIDDLEWARE = [
